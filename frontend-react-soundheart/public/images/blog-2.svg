@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Co-parenting, two homes (demo image)">
+  <defs><linearGradient id="b2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15301f"/><stop offset="1" stop-color="#356a50"/></linearGradient></defs>
+  <rect width="400" height="240" fill="url(#b2)"/>
+  <ellipse cx="200" cy="100" rx="210" ry="90" fill="#C9A961" opacity="0.1"/>
+  <!-- two houses linked -->
+  <g fill="#FAF6EE" opacity="0.92">
+    <path d="M70 150 L 110 118 L 150 150 L 150 200 L 70 200 Z"/>
+    <path d="M250 150 L 290 118 L 330 150 L 330 200 L 250 200 Z"/>
+  </g>
+  <rect x="100" y="168" width="20" height="32" fill="#1F3D2E"/>
+  <rect x="280" y="168" width="20" height="32" fill="#1F3D2E"/>
+  <path d="M150 175 C 200 150, 200 150, 250 175" fill="none" stroke="#C9A961" stroke-width="4"/>
+  <circle cx="200" cy="162" r="9" fill="#C9A961"/>
+</svg>

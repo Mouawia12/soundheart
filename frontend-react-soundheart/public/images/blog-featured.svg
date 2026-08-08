@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Family reconnection (demo image)">
+  <defs>
+    <linearGradient id="bf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15301f"/>
+      <stop offset="1" stop-color="#2E5A44"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#bf)"/>
+  <ellipse cx="320" cy="180" rx="320" ry="150" fill="#C9A961" opacity="0.12"/>
+  <!-- bridge / reconnection -->
+  <path d="M60 300 C 200 200, 440 200, 580 300" fill="none" stroke="#C9A961" stroke-width="4" opacity="0.8"/>
+  <path d="M60 300 C 200 220, 440 220, 580 300" fill="none" stroke="#9ed7b0" stroke-width="2" opacity="0.5"/>
+  <g fill="#C9A961">
+    <circle cx="60" cy="300" r="10"/><circle cx="580" cy="300" r="10"/>
+  </g>
+  <!-- two figures -->
+  <g fill="#FAF6EE" opacity="0.9">
+    <circle cx="60" cy="256" r="16"/>
+    <path d="M36 320 q24 -40 48 0 Z"/>
+    <circle cx="580" cy="256" r="16"/>
+    <path d="M556 320 q24 -40 48 0 Z"/>
+  </g>
+  <!-- heart node at center -->
+  <path d="M320 210 c -14 -18, -44 -6, -44 16 c 0 20, 30 34, 44 46 c 14 -12, 44 -26, 44 -46 c 0 -22, -30 -34, -44 -16 z" fill="#C9A961"/>
+</svg>

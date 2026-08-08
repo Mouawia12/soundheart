@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Couples counseling (demo image)">
+  <defs><linearGradient id="b3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1F3D2E"/><stop offset="1" stop-color="#12261a"/></linearGradient></defs>
+  <rect width="400" height="240" fill="url(#b3)"/>
+  <ellipse cx="200" cy="100" rx="200" ry="90" fill="#C9A961" opacity="0.12"/>
+  <!-- heartbeat between two figures -->
+  <g fill="#FAF6EE" opacity="0.9">
+    <circle cx="90" cy="110" r="20"/><path d="M58 185 q32 -52 64 0 Z"/>
+    <circle cx="310" cy="110" r="20"/><path d="M278 185 q32 -52 64 0 Z"/>
+  </g>
+  <path d="M130 150 H170 L182 128 L198 172 L212 150 H270" fill="none" stroke="#C9A961" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

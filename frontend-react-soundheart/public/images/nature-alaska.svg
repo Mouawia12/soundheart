@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Mat-Su Valley, Alaska at dusk (demo image)">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#12261a"/>
+      <stop offset="0.45" stop-color="#1F3D2E"/>
+      <stop offset="0.8" stop-color="#2E5A44"/>
+      <stop offset="1" stop-color="#37674f"/>
+    </linearGradient>
+    <radialGradient id="aurora" cx="0.5" cy="0.2" r="0.7">
+      <stop offset="0" stop-color="#C9A961" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#8fbf9a" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#1F3D2E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C9A961" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#C9A961" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#8fbf9a" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ribbon2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9ed7b0" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#9ed7b0" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#C9A961" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="560" fill="url(#sky)"/>
+  <ellipse cx="800" cy="120" rx="900" ry="260" fill="url(#aurora)"/>
+
+  <!-- aurora ribbons -->
+  <path d="M120 40 C 300 200, 260 260, 420 300 C 560 336, 520 150, 700 60" fill="none" stroke="url(#ribbon)" stroke-width="70" stroke-linecap="round" opacity="0.7"/>
+  <path d="M780 30 C 940 180, 900 260, 1080 300 C 1240 336, 1220 140, 1420 70" fill="none" stroke="url(#ribbon2)" stroke-width="55" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- stars -->
+  <g fill="#FAF6EE" opacity="0.75">
+    <circle cx="180" cy="70" r="1.6"/><circle cx="320" cy="40" r="1.2"/><circle cx="470" cy="90" r="1.8"/>
+    <circle cx="640" cy="50" r="1.3"/><circle cx="900" cy="46" r="1.6"/><circle cx="1080" cy="80" r="1.2"/>
+    <circle cx="1240" cy="44" r="1.7"/><circle cx="1400" cy="96" r="1.3"/><circle cx="1520" cy="60" r="1.5"/>
+    <circle cx="60" cy="120" r="1.2"/><circle cx="760" cy="120" r="1.1"/><circle cx="1160" cy="130" r="1.2"/>
+  </g>
+
+  <!-- distant mountain range -->
+  <path d="M0 360 L 180 250 L 340 330 L 520 220 L 720 320 L 900 230 L 1120 330 L 1320 250 L 1500 330 L 1600 300 L 1600 560 L 0 560 Z" fill="#254636" opacity="0.9"/>
+  <!-- mid range with snow caps -->
+  <path d="M0 420 L 220 300 L 420 400 L 640 290 L 880 400 L 1120 300 L 1360 400 L 1600 320 L 1600 560 L 0 560 Z" fill="#1b3527"/>
+  <path d="M640 290 L 690 330 L 640 340 L 600 328 Z M1120 300 L 1170 338 L 1120 348 L 1080 336 Z M220 300 L 268 336 L 220 346 L 182 334 Z" fill="#e7efe5" opacity="0.85"/>
+
+  <!-- foreground hills -->
+  <path d="M0 470 L 300 430 L 620 480 L 980 435 L 1320 485 L 1600 445 L 1600 560 L 0 560 Z" fill="#12261a"/>
+
+  <!-- pine trees -->
+  <g fill="#0d1e14">
+    <g transform="translate(120,470)"><path d="M0 0 L 14 34 L -14 34 Z M0 14 L 20 52 L -20 52 Z M-3 46 h6 v12 h-6 Z"/></g>
+    <g transform="translate(210,478)"><path d="M0 0 L 11 28 L -11 28 Z M0 12 L 16 44 L -16 44 Z M-2 40 h4 v10 h-4 Z"/></g>
+    <g transform="translate(1380,478)"><path d="M0 0 L 13 32 L -13 32 Z M0 14 L 19 50 L -19 50 Z M-3 44 h6 v12 h-6 Z"/></g>
+    <g transform="translate(1470,486)"><path d="M0 0 L 10 26 L -10 26 Z M0 12 L 15 42 L -15 42 Z M-2 38 h4 v10 h-4 Z"/></g>
+  </g>
+</svg>
