@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { navItems, site } from '@/config/site'
 
 /** The heartbeat brand mark from the design (gold stroke). */
-function BrandMark() {
+export function BrandMark() {
   return (
     <svg viewBox="0 0 120 40" width="42" height="21" aria-hidden="true" className="flex-none">
       <path
