@@ -196,6 +196,251 @@
     margin: 0 0 20px;
     padding-right: 40px;
   }
+
+  /* Blog article prose — mirrors the design's `article` typography */
+  .prose-article p {
+    margin: 0 0 1.05rem;
+  }
+  .prose-article > p:first-of-type {
+    font-size: 1.14rem;
+    color: #43504a;
+  }
+  .prose-article h3 {
+    font-family: var(--serif, 'Spectral');
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--navy);
+    line-height: 1.2;
+    margin: 2rem 0 0.5rem;
+  }
+  .prose-article strong {
+    color: var(--navy);
+  }
+  .prose-article a {
+    color: var(--gold);
+  }
+  .prose-article ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.1rem;
+  }
+  .prose-article ul li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 0.5rem;
+  }
+  .prose-article ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* Service-page prose (data-driven local landing pages) */
+  .prose-service h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin: 2rem 0 0.5rem;
+  }
+  .prose-service h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.18rem;
+    color: var(--navy);
+    margin: 1.3rem 0 0.25rem;
+  }
+  .prose-service h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin: 0.6rem 0 0.2rem;
+  }
+  .prose-service p {
+    margin: 0 0 1.05rem;
+    color: var(--ink);
+  }
+  .prose-service a {
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .prose-service strong {
+    color: var(--navy);
+  }
+  .prose-service ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.1rem;
+  }
+  .prose-service li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 0.5rem;
+  }
+  .prose-service li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .prose-service .imgph-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 260px;
+    margin: 24px 0;
+    padding: 22px;
+    border: 2px dashed #c9b98e;
+    border-radius: 14px;
+    background: repeating-linear-gradient(45deg, #efe8d8, #efe8d8 13px, #eae1cd 13px, #eae1cd 26px);
+    color: #8a7a52;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* Rich content saved from the CMS editor, rendered on the public site */
+  .rich > :first-child {
+    margin-top: 0;
+  }
+  .rich > :last-child {
+    margin-bottom: 0;
+  }
+  .rich h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin: 1.8rem 0 0.5rem;
+  }
+  .rich h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.18rem;
+    color: var(--navy);
+    margin: 1.3rem 0 0.25rem;
+  }
+  .rich p {
+    margin: 0 0 1.05rem;
+    line-height: 1.8;
+    color: var(--ink);
+  }
+  .rich a {
+    color: var(--gold);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(184, 150, 79, 0.5);
+  }
+  .rich strong {
+    color: var(--navy);
+  }
+  .rich blockquote {
+    margin: 1.2rem 0;
+    padding: 0.4rem 0 0.4rem 1.1rem;
+    border-left: 3px solid var(--gold);
+    color: #4a5550;
+    font-style: italic;
+  }
+  .rich ul,
+  .rich ol {
+    margin: 0 0 1.1rem;
+    padding-left: 0;
+    list-style: none;
+  }
+  .rich ol {
+    counter-reset: rich-ol;
+  }
+  .rich li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+  .rich ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .rich ol li {
+    counter-increment: rich-ol;
+  }
+  .rich ol li::before {
+    content: counter(rich-ol) '.';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 800;
+    color: var(--gold);
+  }
+
+  /* TipTap editor surface inside the admin */
+  .prose-cms {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .prose-cms h2 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin: 1rem 0 0.4rem;
+  }
+  .prose-cms h3 {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    color: var(--navy);
+    margin: 0.9rem 0 0.3rem;
+  }
+  .prose-cms p {
+    margin: 0 0 0.7rem;
+  }
+  .prose-cms ul,
+  .prose-cms ol {
+    margin: 0 0 0.7rem;
+    padding-left: 1.4rem;
+  }
+  .prose-cms ul {
+    list-style: disc;
+  }
+  .prose-cms ol {
+    list-style: decimal;
+  }
+  .prose-cms a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+  .prose-cms blockquote {
+    margin: 0.7rem 0;
+    padding-left: 0.9rem;
+    border-left: 3px solid var(--gold);
+    color: #4a5550;
+    font-style: italic;
+  }
+  .prose-cms:focus {
+    outline: none;
+  }
+  .prose-cms p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    color: #9aa2ac;
+    pointer-events: none;
+  }
 }
 
 @keyframes draw {
