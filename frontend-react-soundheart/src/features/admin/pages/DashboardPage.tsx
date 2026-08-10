@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { adminApi } from '../api/adminApi'
 
 function StatCard({ label, value }: { label: string; value: number | undefined }) {
@@ -12,28 +13,29 @@ function StatCard({ label, value }: { label: string; value: number | undefined }
 }
 
 export default function DashboardPage() {
+  const { t } = useTranslation()
   const { data } = useQuery({ queryKey: ['admin-stats'], queryFn: adminApi.stats })
 
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="m-0 font-serif text-[1.8rem] font-medium text-navy">Dashboard</h1>
+        <h1 className="m-0 font-serif text-[1.8rem] font-medium text-navy">{t('admin.dashboard.title')}</h1>
         <Link
           to="/admin/articles/new"
           className="rounded-btn bg-gold px-4 py-2 text-[0.9rem] font-bold text-navy no-underline hover:bg-gold-bright"
         >
-          + New article
+          {t('admin.dashboard.newArticle')}
         </Link>
       </div>
 
       <div className="grid grid-cols-4 gap-4 max-[720px]:grid-cols-2">
-        <StatCard label="Articles" value={data?.articles} />
-        <StatCard label="Published" value={data?.published} />
-        <StatCard label="Drafts" value={data?.drafts} />
-        <StatCard label="Categories" value={data?.categories} />
+        <StatCard label={t('admin.dashboard.articles')} value={data?.articles} />
+        <StatCard label={t('admin.dashboard.published')} value={data?.published} />
+        <StatCard label={t('admin.dashboard.drafts')} value={data?.drafts} />
+        <StatCard label={t('admin.dashboard.categories')} value={data?.categories} />
       </div>
 
-      <h2 className="mb-3 mt-8 font-serif text-[1.25rem] font-medium text-navy">Recent articles</h2>
+      <h2 className="mb-3 mt-8 font-serif text-[1.25rem] font-medium text-navy">{t('admin.dashboard.recent')}</h2>
       <div className="overflow-hidden rounded-[12px] border border-stone bg-white">
         {(data?.recent ?? []).map((a) => (
           <Link

@@ -1,10 +1,13 @@
 /**
- * UI chrome strings (nav, buttons, form labels). Long-form marketing copy
- * lives in per-page content modules (e.g. features/home/content.ts) and will
- * ultimately be served by the CMS. Keeping strings out of JSX keeps the app
- * ready for the Arabic (RTL) build.
+ * UI chrome strings (nav, buttons, form labels, dashboard). Long-form marketing
+ * copy lives in the CMS. `ar.ts` mirrors this exact shape for the Arabic build.
  */
 const en = {
+  lang: {
+    // Shown on the toggle: the language you switch TO.
+    switchTo: 'العربية',
+    label: 'Language',
+  },
   nav: {
     about: 'About',
     model: 'The Model',
@@ -16,12 +19,97 @@ const en = {
     contact: 'Contact',
     book: 'Book a consultation',
   },
+  guideNav: {
+    services: 'Services',
+    articles: 'Articles',
+    book: 'Book a session',
+  },
   common: {
     bookConsultation: 'Book a consultation',
+    bookSession: 'Book a session',
     read: 'Read',
     readArticle: 'Read the article',
     viewAllArticles: 'View all articles',
+    browseAllArticles: 'Browse all articles →',
     menu: 'Menu',
+    home: 'Home',
+    backHome: '← Back home',
+  },
+  floating: {
+    whatsapp: 'Message us on WhatsApp for general inquiries',
+    whatsappTip: 'WhatsApp us · general inquiries only',
+    book: 'Book a consultation',
+  },
+  footer: {
+    basedIn: 'Based in the Mat-Su Valley',
+    workingWith: 'Working with clients across the lower 48 and beyond',
+    privacy: 'Privacy',
+    terms: 'Terms',
+    disclaimer: 'Disclaimer',
+    faq: 'FAQ',
+  },
+  contact: {
+    sendMessage: 'Send us a message',
+    firstName: 'First name',
+    lastName: 'Last name',
+    email: 'Email',
+    phoneOptional: 'Phone (optional)',
+    whatBrings: 'What brings you here?',
+    aboutMessage: "A little about what's going on",
+    send: 'Send message',
+    sending: 'Sending…',
+    readyToBegin: 'Ready to begin?',
+    preferToTalk: 'Prefer to talk? Call',
+    orEmail: 'or email',
+  },
+  auth: {
+    adminSignIn: 'Admin sign in',
+    subtitle: 'Manage articles, categories, and content.',
+    email: 'Email',
+    password: 'Password',
+    signIn: 'Sign in',
+    signingIn: 'Signing in…',
+    showPassword: 'Show password',
+    hidePassword: 'Hide password',
+    signInFailed: 'Sign in failed',
+  },
+  admin: {
+    nav: {
+      dashboard: 'Dashboard',
+      articles: 'Articles',
+      categories: 'Categories',
+      pages: 'Pages',
+      settings: 'Settings',
+    },
+    signOut: 'Sign out',
+    viewSite: '↗ View site',
+    save: 'Save changes',
+    saving: 'Saving…',
+    saved: 'Saved ✓',
+    back: '← Back',
+    cancel: 'Cancel',
+    dashboard: {
+      title: 'Dashboard',
+      newArticle: '+ New article',
+      articles: 'Articles',
+      published: 'Published',
+      drafts: 'Drafts',
+      categories: 'Categories',
+      recent: 'Recent articles',
+    },
+    pages: {
+      title: 'Pages',
+      intro: "Edit each page's hero text, photos, content, and call-to-action. Changes appear on the live site.",
+      groupMain: 'Main pages',
+      groupServices: 'Local service pages',
+      groupGuides: 'Guides',
+      edit: 'Edit →',
+    },
+    settings: {
+      title: 'Site settings',
+      account: 'Account',
+      changePassword: 'Change password',
+    },
   },
 } as const
 

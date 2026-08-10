@@ -15,6 +15,11 @@ import '@fontsource/mulish/400.css'
 import '@fontsource/mulish/500.css'
 import '@fontsource/mulish/600.css'
 import '@fontsource/mulish/700.css'
+// Arabic (RTL) — self-hosted, used when the site is switched to Arabic
+import '@fontsource/cairo/400.css'
+import '@fontsource/cairo/500.css'
+import '@fontsource/cairo/600.css'
+import '@fontsource/cairo/700.css'
 
 import './index.css'
 import '@/lib/i18n'

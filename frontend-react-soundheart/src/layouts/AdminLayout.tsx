@@ -1,16 +1,19 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '@/store/auth'
 import { adminApi } from '@/features/admin/api/adminApi'
+import LangToggle from '@/components/LangToggle'
 
 const nav = [
-  { to: '/admin', label: 'Dashboard', end: true },
-  { to: '/admin/articles', label: 'Articles', end: false },
-  { to: '/admin/categories', label: 'Categories', end: false },
-  { to: '/admin/pages', label: 'Pages', end: false },
-  { to: '/admin/settings', label: 'Settings', end: false },
+  { to: '/admin', key: 'dashboard', end: true },
+  { to: '/admin/articles', key: 'articles', end: false },
+  { to: '/admin/categories', key: 'categories', end: false },
+  { to: '/admin/pages', key: 'pages', end: false },
+  { to: '/admin/settings', key: 'settings', end: false },
 ]
 
 export default function AdminLayout() {
+  const { t } = useTranslation()
   const user = useAuthStore((s) => s.user)
   const logout = useAuthStore((s) => s.logout)
   const navigate = useNavigate()
@@ -47,26 +50,29 @@ export default function AdminLayout() {
                 }`
               }
             >
-              {item.label}
+              {t(`admin.nav.${item.key}`)}
             </NavLink>
           ))}
         </nav>
         <div className="mt-auto border-t border-white/10 px-4 py-4 text-[0.8rem]">
-          <a
-            href="/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mb-3 block text-gold-bright no-underline hover:underline"
-          >
-            ↗ View site
-          </a>
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <a
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-bright no-underline hover:underline"
+            >
+              {t('admin.viewSite')}
+            </a>
+            <LangToggle className="text-[#c9d3c8]" />
+          </div>
           <p className="m-0 truncate text-[#9DAC9E]">{user?.email}</p>
           <button
             type="button"
             onClick={onLogout}
             className="mt-2 w-full rounded-md border border-white/15 py-1.5 text-[0.85rem] font-semibold text-ivory transition-colors hover:bg-white/5"
           >
-            Sign out
+            {t('admin.signOut')}
           </button>
         </div>
       </aside>

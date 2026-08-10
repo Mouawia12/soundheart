@@ -1,10 +1,13 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '@/store/auth'
 import { adminApi } from '../api/adminApi'
 import { apiErrorMessage } from '@/lib/api'
+import LangToggle from '@/components/LangToggle'
 
 export default function LoginPage() {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -22,7 +25,7 @@ export default function LoginPage() {
       setAuth(token, user)
       navigate('/admin')
     } catch (err) {
-      setError(apiErrorMessage(err, 'Sign in failed'))
+      setError(apiErrorMessage(err, t('auth.signInFailed')))
     } finally {
       setLoading(false)
     }
@@ -38,12 +41,15 @@ export default function LoginPage() {
           <img src="/brand-mark.jpg" alt="" className="h-10 w-auto rounded-[8px]" />
           <span className="font-serif text-[1.3rem] font-semibold text-navy">SoundHeart</span>
         </div>
-        <h1 className="mb-1 font-serif text-[1.5rem] font-medium text-navy">Admin sign in</h1>
-        <p className="mb-6 text-[0.9rem] text-[#59636f]">Manage articles, categories, and content.</p>
+        <div className="mb-1 flex items-center justify-between gap-2">
+          <h1 className="m-0 font-serif text-[1.5rem] font-medium text-navy">{t('auth.adminSignIn')}</h1>
+          <LangToggle className="text-navy" />
+        </div>
+        <p className="mb-6 text-[0.9rem] text-[#59636f]">{t('auth.subtitle')}</p>
 
         <form onSubmit={onSubmit} className="flex flex-col gap-3">
           <label className="text-[0.85rem] font-semibold text-navy">
-            Email
+            {t('auth.email')}
             <input
               type="email"
               value={email}
@@ -54,7 +60,7 @@ export default function LoginPage() {
             />
           </label>
           <label className="text-[0.85rem] font-semibold text-navy">
-            Password
+            {t('auth.password')}
             <div className="relative mt-1">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -67,7 +73,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                aria-label={showPassword ? t('auth.hidePassword') : t('auth.showPassword')}
                 aria-pressed={showPassword}
                 className="absolute inset-y-0 right-0 flex items-center px-3 text-[#8a929c] transition-colors hover:text-navy"
               >
@@ -96,7 +102,7 @@ export default function LoginPage() {
             disabled={loading}
             className="mt-2 rounded-btn bg-gold px-5 py-3 font-bold text-navy transition-all hover:bg-gold-bright disabled:opacity-60"
           >
-            {loading ? 'Signing in…' : 'Sign in'}
+            {loading ? t('auth.signingIn') : t('auth.signIn')}
           </button>
         </form>
       </div>
