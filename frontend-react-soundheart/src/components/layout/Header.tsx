@@ -23,6 +23,10 @@ export function BrandMark() {
 const bookOutline =
   'rounded-[8px] border-[1.5px] border-gold px-[0.9em] py-[0.5em] text-[0.9rem] font-extrabold text-navy no-underline transition-colors hover:bg-[rgba(184,150,79,0.1)]'
 
+// Client Login — design `.portal`: subtle stone-bordered pill, muted text, gold on hover.
+const portalPill =
+  'rounded-[7px] border border-[#EAE1CD] px-[0.7em] py-[0.34em] text-[0.8rem] font-semibold text-[#6b7370] no-underline transition-colors hover:text-gold'
+
 export default function Header() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
@@ -41,7 +45,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav — all links fit on one line */}
-        <nav className="hidden flex-wrap items-center justify-end gap-[17px] min-[1120px]:flex">
+        <nav className="hidden flex-wrap items-center justify-end gap-[18px] min-[1120px]:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.key}
@@ -51,10 +55,7 @@ export default function Header() {
               {t(`nav.${item.key}`)}
             </NavLink>
           ))}
-          <Link
-            to="/admin"
-            className="whitespace-nowrap text-[0.9rem] font-semibold text-navy no-underline transition-colors hover:text-gold"
-          >
+          <Link to="/admin" className={`${portalPill} whitespace-nowrap`}>
             {t('nav.clientLogin')}
           </Link>
           <Link to="/contact" className={bookOutline}>
