@@ -8,6 +8,7 @@ const ar = {
   },
   nav: {
     about: 'من نحن',
+    services: 'الخدمات',
     model: 'النموذج',
     therapy: 'العلاج',
     retreats: 'الخلوات',
@@ -15,6 +16,8 @@ const ar = {
     resources: 'المصادر',
     shop: 'المتجر',
     contact: 'تواصل معنا',
+    clientLogin: 'دخول العملاء',
+    getStarted: 'ابدأ الآن',
     book: 'احجز استشارة',
   },
   guideNav: {
@@ -41,10 +44,12 @@ const ar = {
   footer: {
     basedIn: 'مقرّنا في وادي ماتسو',
     workingWith: 'نعمل مع عملاء من مختلف الولايات وخارجها',
+    contact: 'تواصل معنا',
+    faq: 'الأسئلة الشائعة',
     privacy: 'الخصوصية',
     terms: 'الشروط',
     disclaimer: 'إخلاء المسؤولية',
-    faq: 'الأسئلة الشائعة',
+    clientLogin: 'دخول العملاء',
   },
   contact: {
     sendMessage: 'أرسل لنا رسالة',

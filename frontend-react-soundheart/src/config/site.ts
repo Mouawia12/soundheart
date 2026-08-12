@@ -8,6 +8,7 @@ export interface SiteConfig {
   whatsappNumber: string
   whatsappHref: string
   simplePracticeUrl: string
+  clientPortalUrl: string
   location: string
   hours: string
   crisisNote: string
@@ -31,6 +32,7 @@ export const site: SiteConfig = {
   whatsappNumber: '19073101404',
   whatsappHref: 'https://wa.me/19073101404',
   simplePracticeUrl: 'https://soundheart.clientsecure.me',
+  clientPortalUrl: '',
   location: 'Mat-Su Valley, Alaska',
   hours: 'By appointment, Monday to Friday',
   crisisNote: 'If you are in crisis, call or text 988, or dial 911 for an emergency.',
@@ -44,27 +46,26 @@ export interface NavItem {
   to: string
 }
 
-/** Primary navigation — routes are placeholders until each page is built. */
+/**
+ * Primary navigation (new design): About · Services · Retreats · Training ·
+ * Resources · Shop, then a Client Login link + a Get Started button (rendered
+ * separately in the header). The Model + Counseling detail live under About /
+ * Services, so they are no longer top-level nav.
+ */
 export const navItems: NavItem[] = [
   { key: 'about', label: 'About', to: '/about' },
-  { key: 'model', label: 'The Model', to: '/the-model' },
-  { key: 'therapy', label: 'Therapy', to: '/therapy' },
+  { key: 'services', label: 'Services', to: '/services' },
   { key: 'retreats', label: 'Retreats', to: '/retreats' },
   { key: 'training', label: 'Training', to: '/training' },
   { key: 'resources', label: 'Resources', to: '/resources' },
   { key: 'shop', label: 'Shop', to: '/shop' },
-  { key: 'contact', label: 'Contact', to: '/contact' },
 ]
 
+/** Footer links (new design): Contact (Get Started) · FAQ · legal · Client Login. */
 export const footerNav: NavItem[] = [
-  { key: 'about', label: 'About', to: '/about' },
-  { key: 'model', label: 'The Model', to: '/the-model' },
-  { key: 'therapy', label: 'Therapy', to: '/therapy' },
-  { key: 'retreats', label: 'Retreats', to: '/retreats' },
-  { key: 'training', label: 'Training', to: '/training' },
-  { key: 'resources', label: 'Resources', to: '/resources' },
-  { key: 'faq', label: 'FAQ', to: '/faq' },
   { key: 'contact', label: 'Contact', to: '/contact' },
+  { key: 'faq', label: 'FAQ', to: '/faq' },
   { key: 'privacy', label: 'Privacy', to: '/privacy' },
   { key: 'terms', label: 'Terms', to: '/terms' },
+  { key: 'disclaimer', label: 'Disclaimer', to: '/disclaimer' },
 ]

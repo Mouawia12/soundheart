@@ -51,17 +51,25 @@ export default function Header() {
               {t(`nav.${item.key}`)}
             </NavLink>
           ))}
-          <a href={site.simplePracticeUrl} target="_blank" rel="noopener noreferrer" className={bookOutline}>
-            {t('nav.book')}
+          <a
+            href={site.clientPortalUrl || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whitespace-nowrap text-[0.9rem] font-semibold text-navy no-underline transition-colors hover:text-gold"
+          >
+            {t('nav.clientLogin')}
           </a>
+          <Link to="/contact" className={bookOutline}>
+            {t('nav.getStarted')}
+          </Link>
           <LangToggle className="text-navy" />
         </nav>
 
-        {/* Mobile: keep the book button + a menu toggle */}
+        {/* Mobile: keep the Get Started button + a menu toggle */}
         <div className="flex items-center gap-3 min-[1120px]:hidden">
-          <a href={site.simplePracticeUrl} target="_blank" rel="noopener noreferrer" className={`${bookOutline} max-[420px]:hidden`}>
-            {t('nav.book')}
-          </a>
+          <Link to="/contact" className={`${bookOutline} max-[420px]:hidden`}>
+            {t('nav.getStarted')}
+          </Link>
           <button
             type="button"
             aria-label={t('common.menu')}
@@ -92,16 +100,23 @@ export default function Header() {
             {t(`nav.${item.key}`)}
           </NavLink>
         ))}
+        <a
+          href={site.clientPortalUrl || '#'}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setOpen(false)}
+          className="w-full border-b border-stone px-[26px] py-[14px] text-[0.94rem] font-semibold text-navy no-underline hover:text-gold"
+        >
+          {t('nav.clientLogin')}
+        </a>
         <div className="flex items-center justify-between gap-3 px-[26px] py-3">
-          <a
-            href={site.simplePracticeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/contact"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center justify-center rounded-[8px] border-[1.5px] border-gold px-5 py-3 text-[0.95rem] font-extrabold text-navy"
+            className="inline-flex items-center justify-center rounded-[8px] border-[1.5px] border-gold px-5 py-3 text-[0.95rem] font-extrabold text-navy no-underline"
           >
-            {t('nav.book')}
-          </a>
+            {t('nav.getStarted')}
+          </Link>
           <LangToggle className="text-navy" />
         </div>
       </nav>

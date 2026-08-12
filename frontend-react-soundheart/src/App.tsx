@@ -16,6 +16,7 @@ import SettingsPage from '@/features/admin/pages/SettingsPage'
 import AboutPage from '@/features/pages/AboutPage'
 import FaqPage from '@/features/pages/FaqPage'
 import ContactPage from '@/features/pages/ContactPage'
+import ServicesPage from '@/features/pages/ServicesPage'
 import TherapyPage from '@/features/pages/TherapyPage'
 import RetreatsPage from '@/features/pages/RetreatsPage'
 import TrainingPage from '@/features/pages/TrainingPage'
@@ -39,6 +40,7 @@ export default function App() {
       <Route element={<PublicLayout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="services" element={<ServicesPage />} />
         <Route path="therapy" element={<TherapyPage />} />
         <Route path="retreats" element={<RetreatsPage />} />
         <Route path="training" element={<TrainingPage />} />

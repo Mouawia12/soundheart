@@ -245,6 +245,7 @@ export default function SettingsPage() {
         <Field label="Location / address" value={form.address ?? ''} onChange={(v) => set('address', v)} />
         <Field label="Hours" value={form.hours ?? ''} onChange={(v) => set('hours', v)} />
         <Field label="Booking link (SimplePractice)" value={form.bookingUrl ?? ''} onChange={(v) => set('bookingUrl', v)} placeholder="https://…" />
+        <Field label="Client Login (portal) URL" value={form.clientPortalUrl ?? ''} onChange={(v) => set('clientPortalUrl', v)} hint="The client portal / login link in the header" placeholder="https://…" />
         <Field label="Crisis note" value={form.crisisNote ?? ''} onChange={(v) => set('crisisNote', v)} textarea />
       </Group>
 

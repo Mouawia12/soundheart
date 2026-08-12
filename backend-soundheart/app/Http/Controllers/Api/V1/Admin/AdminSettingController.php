@@ -26,6 +26,7 @@ class AdminSettingController extends Controller
             'data.email' => ['nullable', 'string', 'email', 'max:160'],
             'data.whatsappNumber' => ['nullable', 'string', 'max:40'],
             'data.bookingUrl' => ['nullable', 'string', 'url', 'max:400'],
+            'data.clientPortalUrl' => ['nullable', 'string', 'max:400'],
             'data.address' => ['nullable', 'string', 'max:200'],
             'data.hours' => ['nullable', 'string', 'max:200'],
             'data.crisisNote' => ['nullable', 'string', 'max:400'],

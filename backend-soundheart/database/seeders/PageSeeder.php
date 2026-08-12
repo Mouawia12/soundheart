@@ -154,6 +154,22 @@ class PageSeeder extends Seeder
                     'Book a consultation',
                 ),
             ]],
+            'services' => ['name' => 'Services', 'data' => [
+                'hero' => [
+                    'eyebrow' => 'Services',
+                    'title' => 'Ways we can work together',
+                    'lead' => 'Licensed therapy here in the Valley, model-based coaching more broadly, professional training, and the thinking that holds it all together.',
+                ],
+                'sections' => [
+                    $this->rich('intro', 'Intro paragraph', '<p>Every path into SoundHeart runs through the same idea, that connection is a practice. Choose where you are, and we will help you find the right way in.</p>'),
+                    $this->rich('body', 'Extra content (optional)', ''),
+                ],
+                'cta' => $this->cta(
+                    'Not sure which fits?',
+                    'Tell us a little about what is going on, and we will point you to the right kind of support.',
+                    'Get started',
+                ),
+            ]],
             'therapy' => ['name' => 'Therapy', 'data' => [
                 'hero' => [
                     'eyebrow' => 'Therapy',

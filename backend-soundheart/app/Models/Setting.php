@@ -31,6 +31,7 @@ class Setting extends Model
             'email' => 'hello@soundheart.org',
             'whatsappNumber' => '19073101404',
             'bookingUrl' => 'https://soundheart.clientsecure.me',
+            'clientPortalUrl' => '',
             'address' => 'Mat-Su Valley, Alaska',
             'hours' => 'By appointment, Monday to Friday',
             'crisisNote' => 'In crisis? Please do not wait for a reply. Call or text 988 (Suicide & Crisis Lifeline) or dial 911. SoundHeart is not a crisis or emergency service.',

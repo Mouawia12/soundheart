@@ -12,6 +12,7 @@ export interface SiteSettings {
   email?: string
   whatsappNumber?: string
   bookingUrl?: string
+  clientPortalUrl?: string
   address?: string
   hours?: string
   crisisNote?: string
@@ -37,6 +38,7 @@ export function applySettings(s: SiteSettings | undefined) {
     site.whatsappHref = `https://wa.me/${digits(s.whatsappNumber).replace('+', '')}`
   }
   if (s.bookingUrl) site.simplePracticeUrl = s.bookingUrl
+  if (s.clientPortalUrl !== undefined) site.clientPortalUrl = s.clientPortalUrl
   if (s.address) site.location = s.address
   if (s.hours) site.hours = s.hours
   if (s.crisisNote) site.crisisNote = s.crisisNote

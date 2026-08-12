@@ -10,6 +10,7 @@ const en = {
   },
   nav: {
     about: 'About',
+    services: 'Services',
     model: 'The Model',
     therapy: 'Therapy',
     retreats: 'Retreats',
@@ -17,6 +18,8 @@ const en = {
     resources: 'Resources',
     shop: 'Shop',
     contact: 'Contact',
+    clientLogin: 'Client Login',
+    getStarted: 'Get Started',
     book: 'Book a consultation',
   },
   guideNav: {
@@ -43,10 +46,12 @@ const en = {
   footer: {
     basedIn: 'Based in the Mat-Su Valley',
     workingWith: 'Working with clients across the lower 48 and beyond',
+    contact: 'Contact',
+    faq: 'FAQ',
     privacy: 'Privacy',
     terms: 'Terms',
     disclaimer: 'Disclaimer',
-    faq: 'FAQ',
+    clientLogin: 'Client Login',
   },
   contact: {
     sendMessage: 'Send us a message',
