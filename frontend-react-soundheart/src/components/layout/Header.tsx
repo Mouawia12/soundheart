@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { navItems, site } from '@/config/site'
+import { navItems } from '@/config/site'
 import LangToggle from '@/components/LangToggle'
 
 /** The heartbeat brand mark from the design (gold stroke). */
@@ -51,14 +51,12 @@ export default function Header() {
               {t(`nav.${item.key}`)}
             </NavLink>
           ))}
-          <a
-            href={site.clientPortalUrl || '#'}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/admin"
             className="whitespace-nowrap text-[0.9rem] font-semibold text-navy no-underline transition-colors hover:text-gold"
           >
             {t('nav.clientLogin')}
-          </a>
+          </Link>
           <Link to="/contact" className={bookOutline}>
             {t('nav.getStarted')}
           </Link>
@@ -100,15 +98,13 @@ export default function Header() {
             {t(`nav.${item.key}`)}
           </NavLink>
         ))}
-        <a
-          href={site.clientPortalUrl || '#'}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to="/admin"
           onClick={() => setOpen(false)}
           className="w-full border-b border-stone px-[26px] py-[14px] text-[0.94rem] font-semibold text-navy no-underline hover:text-gold"
         >
           {t('nav.clientLogin')}
-        </a>
+        </Link>
         <div className="flex items-center justify-between gap-3 px-[26px] py-3">
           <Link
             to="/contact"

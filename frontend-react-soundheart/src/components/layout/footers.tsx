@@ -18,14 +18,9 @@ export function FooterSite() {
               {t(`footer.${l.key}`)}
             </Link>
           ))}
-          <a
-            href={site.clientPortalUrl || '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-gold-bright no-underline hover:underline"
-          >
+          <Link to="/admin" className="font-semibold text-gold-bright no-underline hover:underline">
             {t('footer.clientLogin')}
-          </a>
+          </Link>
         </nav>
         <p className="m-0">
           {site.legalName} · {t('footer.basedIn')} · {t('footer.workingWith')}
