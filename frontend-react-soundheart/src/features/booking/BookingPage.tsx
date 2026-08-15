@@ -102,6 +102,7 @@ export default function BookingPage() {
       <HeroBand eyebrow={t('booking.eyebrow')} title={t('booking.title')} lead={t('booking.lead')} />
 
       <Wrap>
+        <div key={step} className="booking-step">
         {step === 'done' ? (
           <div className="mx-auto mt-12 max-w-[640px] rounded-[16px] border border-[#cfe6d4] bg-[#eef7f0] p-10 text-center">
             <p className="m-0 font-serif text-[1.6rem] text-navy">{t('booking.booked')}</p>
@@ -148,14 +149,15 @@ export default function BookingPage() {
                 ) : (slotsData?.slots.length ?? 0) === 0 ? (
                   <p className="text-[#59636f]">{t('booking.noTimes')}</p>
                 ) : (
-                  <div className="grid grid-cols-4 gap-3 max-[640px]:grid-cols-3 max-[420px]:grid-cols-2">
-                    {slotsData!.slots.map((s) => (
+                  <div key={date} className="booking-fade grid grid-cols-4 gap-3 max-[640px]:grid-cols-3 max-[420px]:grid-cols-2">
+                    {slotsData!.slots.map((s, i) => (
                       <button
                         key={s.startsAt}
                         type="button"
                         disabled={!s.available}
                         onClick={() => pickSlot(s)}
-                        className={`rounded-[10px] border-[1.5px] px-2 py-3 text-[0.95rem] font-bold transition-colors ${
+                        style={{ animationDelay: `${Math.min(i * 0.028, 0.36)}s` }}
+                        className={`booking-slot rounded-[10px] border-[1.5px] px-2 py-3 text-[0.95rem] font-bold transition-colors ${
                           s.available
                             ? 'border-gold text-navy hover:bg-gold hover:text-navy'
                             : 'cursor-not-allowed border-stone bg-stone/40 text-[#a7ab9f] line-through'
@@ -242,6 +244,7 @@ export default function BookingPage() {
             </div>
           </div>
         )}
+        </div>
       </Wrap>
     </>
   )

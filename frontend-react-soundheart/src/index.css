@@ -491,6 +491,42 @@ html[dir='rtl'] .rich blockquote {
   }
 }
 
+/* ===== Booking flow — smooth step transitions ===== */
+@keyframes bookingStepIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes bookingPop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.booking-step {
+  animation: bookingStepIn 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Fade the slot grid in when the date changes, staggering each slot slightly. */
+.booking-fade {
+  animation: bookingStepIn 0.3s ease;
+}
+.booking-slot {
+  animation: bookingPop 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.booking-slots.is-loading {
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .heartbeat path {
     animation: none;
@@ -498,5 +534,10 @@ html[dir='rtl'] .rich blockquote {
   }
   html {
     scroll-behavior: auto;
+  }
+  .booking-step,
+  .booking-fade,
+  .booking-slot {
+    animation: none;
   }
 }
