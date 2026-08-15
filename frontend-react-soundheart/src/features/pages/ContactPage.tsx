@@ -1,8 +1,30 @@
 import { useEffect, useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { apiPost, apiErrorMessage } from '@/lib/api'
 import { site } from '@/config/site'
 import { HeroBand, ImgPh } from './parts'
 import { usePage, pageImage, pageText, pageHtml } from '@/features/site/usePage'
+
+const steps = [
+  {
+    title: 'Book a consultation',
+    body: 'Choose a time and reserve it in a few simple steps. This first conversation helps us understand what you need and whether we are a good fit.',
+  },
+  {
+    title: 'Complete a short intake',
+    body: 'Before your first full session, you will fill out secure intake forms in our private client portal, so we can make the most of your time.',
+  },
+  {
+    title: 'Begin the work',
+    body: 'We meet, in person in the Mat-Su Valley or online where available, and build a plan together, at your pace.',
+  },
+]
+
+const fees = [
+  'SoundHeart is a private-pay practice. Being private pay keeps your care confidential and fully focused on you rather than on insurance requirements.',
+  'Different kinds of work carry different investment levels. A consultation, ongoing counseling or coaching, intensives, and retreats are each priced for what they involve.',
+  'We believe in being open about cost, and we will always talk it through with you honestly before you commit to anything.',
+]
 
 const subjectsDefault = [
   'Marriage or relationship',
@@ -32,7 +54,7 @@ export default function ContactPage() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    document.title = 'Contact | SoundHeart Counseling'
+    document.title = 'Get Started | SoundHeart Counseling'
   }, [])
 
   const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }))
@@ -66,8 +88,34 @@ export default function ContactPage() {
       <section className="pb-16">
         <div className="mx-auto max-w-[1000px] px-[26px]">
           <ImgPh label="PHOTO PLACEHOLDER, a warm, welcoming image" src={pageImage(page, 'hero')} className="my-10" />
+
+          {/* How it works */}
+          <h2 className="text-center font-serif text-[1.7rem] font-medium text-navy">How it works</h2>
+          <div className="mt-7 grid grid-cols-3 gap-5 max-[720px]:grid-cols-1">
+            {steps.map((s, i) => (
+              <div key={s.title} className="rounded-[16px] border border-stone bg-white p-6">
+                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-navy font-bold text-ivory">{i + 1}</div>
+                <h3 className="mb-1 font-serif text-[1.2rem] font-medium text-navy">{s.title}</h3>
+                <p className="m-0 text-[0.95rem] leading-[1.6] text-[#55606b]">{s.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Fees and investment */}
+          <div className="mt-10 rounded-[16px] border border-stone bg-white p-7 max-[560px]:p-5">
+            <h2 className="mb-2 font-serif text-[1.4rem] font-medium text-navy">Fees and investment</h2>
+            {fees.map((p) => (
+              <p key={p} className="mb-2 text-[1rem] leading-[1.7] text-[#4a5550] last:mb-0">{p}</p>
+            ))}
+            <p className="mt-4">
+              <Link to="/faq" className="border-b-2 border-gold font-bold text-navy no-underline">
+                See common questions →
+              </Link>
+            </p>
+          </div>
         </div>
-        <div className="mx-auto grid max-w-[1000px] grid-cols-[1.2fr_0.8fr] items-start gap-10 px-[26px] max-[820px]:grid-cols-1">
+
+        <div className="mx-auto mt-14 grid max-w-[1000px] grid-cols-[1.2fr_0.8fr] items-start gap-10 px-[26px] max-[820px]:grid-cols-1">
           {/* Form */}
           <div className="rounded-card border border-stone bg-white p-8 max-[560px]:p-6">
             <h2 className="mb-4 text-[1.4rem]">{formHeading}</h2>
@@ -160,9 +208,9 @@ export default function ContactPage() {
                   __html: pageHtml(page, 'aside_text', "<p>If you already know you'd like to start, the fastest way in is to book a consultation.</p>"),
                 }}
               />
-              <a href={site.simplePracticeUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary block">
+              <Link to="/booking" className="btn btn-primary block text-center">
                 {asideButton}
-              </a>
+              </Link>
               <p className="mt-4 text-[0.9rem] text-[#55606b]">
                 Prefer to talk? Call{' '}
                 <a href={site.phoneHref} className="font-bold text-gold">{site.phoneDisplay}</a>
