@@ -9,6 +9,8 @@ const nav = [
   { to: '/admin/articles', key: 'articles', end: false },
   { to: '/admin/categories', key: 'categories', end: false },
   { to: '/admin/pages', key: 'pages', end: false },
+  { to: '/admin/bookings', key: 'bookings', end: false },
+  { to: '/admin/booking', key: 'bookingSettings', end: false },
   { to: '/admin/settings', key: 'settings', end: false },
 ]
 

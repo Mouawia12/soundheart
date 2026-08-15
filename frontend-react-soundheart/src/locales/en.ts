@@ -84,6 +84,8 @@ const en = {
       articles: 'Articles',
       categories: 'Categories',
       pages: 'Pages',
+      bookings: 'Bookings',
+      bookingSettings: 'Booking settings',
       settings: 'Settings',
     },
     signOut: 'Sign out',

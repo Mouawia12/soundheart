@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { site } from '@/config/site'
 
@@ -25,10 +26,8 @@ export default function FloatingContact() {
         </svg>
       </a>
 
-      <a
-        href={site.simplePracticeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        to="/booking"
         aria-label={t('floating.book')}
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-gold shadow-[0_10px_26px_-8px_rgba(0,0,0,0.45)] transition-transform hover:-translate-y-0.5 max-[520px]:h-[52px] max-[520px]:w-[52px]"
       >
@@ -39,7 +38,7 @@ export default function FloatingContact() {
           <rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="#1F3D2E" strokeWidth={1.8} />
           <path d="M3.5 9.5h17M8 3v4M16 3v4" fill="none" stroke="#1F3D2E" strokeWidth={1.8} strokeLinecap="round" />
         </svg>
-      </a>
+      </Link>
     </div>
   )
 }

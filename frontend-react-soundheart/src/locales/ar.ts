@@ -82,6 +82,8 @@ const ar = {
       articles: 'المقالات',
       categories: 'التصنيفات',
       pages: 'الصفحات',
+      bookings: 'الحجوزات',
+      bookingSettings: 'إعدادات الحجز',
       settings: 'الإعدادات',
     },
     signOut: 'تسجيل الخروج',

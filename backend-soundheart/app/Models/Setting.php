@@ -21,6 +21,41 @@ class Setting extends Model
         );
     }
 
+    /** The booking settings row (working hours, session length, etc.). */
+    public static function booking(): self
+    {
+        return static::firstOrCreate(
+            ['group' => 'booking'],
+            ['data' => static::bookingDefaults()],
+        );
+    }
+
+    public static function bookingDefaults(): array
+    {
+        $window = [['start' => '09:00', 'end' => '17:00']];
+
+        return [
+            'timezone' => 'America/Anchorage',
+            'sessionMinutes' => 50,
+            'bufferMinutes' => 10,
+            'leadTimeHours' => 24,
+            'maxAdvanceDays' => 60,
+            'price' => 0,
+            'currency' => 'USD',
+            'allowOnline' => true,
+            'allowInPerson' => true,
+            'hours' => [
+                'mon' => $window,
+                'tue' => $window,
+                'wed' => $window,
+                'thu' => $window,
+                'fri' => $window,
+                'sat' => [],
+                'sun' => [],
+            ],
+        ];
+    }
+
     public static function defaults(): array
     {
         return [

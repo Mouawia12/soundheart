@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\Admin\AdminArticleController;
 use App\Http\Controllers\Api\V1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\V1\Admin\AdminDashboardController;
+use App\Http\Controllers\Api\V1\Admin\AdminBookingController;
 use App\Http\Controllers\Api\V1\Admin\AdminPageController;
 use App\Http\Controllers\Api\V1\Admin\AdminSettingController;
 use App\Http\Controllers\Api\V1\Admin\MediaController;
@@ -32,5 +33,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::get('settings', [AdminSettingController::class, 'show']);
         Route::put('settings', [AdminSettingController::class, 'update']);
+
+        Route::get('booking/settings', [AdminBookingController::class, 'settings']);
+        Route::put('booking/settings', [AdminBookingController::class, 'updateSettings']);
+        Route::get('bookings', [AdminBookingController::class, 'bookings']);
+        Route::put('bookings/{booking}/cancel', [AdminBookingController::class, 'cancelBooking']);
     });
 });

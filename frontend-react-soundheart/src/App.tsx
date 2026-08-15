@@ -13,6 +13,9 @@ import CategoriesPage from '@/features/admin/pages/CategoriesPage'
 import PagesListPage from '@/features/admin/pages/PagesListPage'
 import PageEditorPage from '@/features/admin/pages/PageEditorPage'
 import SettingsPage from '@/features/admin/pages/SettingsPage'
+import BookingsListPage from '@/features/admin/pages/BookingsListPage'
+import BookingSettingsPage from '@/features/admin/pages/BookingSettingsPage'
+import BookingPage from '@/features/booking/BookingPage'
 import AboutPage from '@/features/pages/AboutPage'
 import FaqPage from '@/features/pages/FaqPage'
 import ContactPage from '@/features/pages/ContactPage'
@@ -41,6 +44,7 @@ export default function App() {
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="services" element={<ServicesPage />} />
+        <Route path="booking" element={<BookingPage />} />
         <Route path="therapy" element={<TherapyPage />} />
         <Route path="retreats" element={<RetreatsPage />} />
         <Route path="training" element={<TrainingPage />} />
@@ -84,6 +88,8 @@ export default function App() {
         <Route path="categories" element={<CategoriesPage />} />
         <Route path="pages" element={<PagesListPage />} />
         <Route path="pages/:key" element={<PageEditorPage />} />
+        <Route path="bookings" element={<BookingsListPage />} />
+        <Route path="booking" element={<BookingSettingsPage />} />
         <Route path="settings" element={<SettingsPage />} />
       </Route>
     </Routes>
