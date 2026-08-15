@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
         ]);
 
-        // Ensure the site settings row exists with defaults.
+        // Ensure the site + booking settings rows exist with defaults.
         Setting::site();
+        Setting::booking();
     }
 }
