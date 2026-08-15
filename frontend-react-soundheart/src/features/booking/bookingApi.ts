@@ -62,7 +62,15 @@ export const bookingApi = {
   config: () => apiGet<BookingConfig>('/booking/config'),
   slots: (date: string) => apiGet<{ date: string; slots: Slot[] }>('/booking/slots', { date }),
   create: (input: CreateBookingInput) =>
-    apiPost<{ id: number; startsAt: string; endsAt: string; type: string }>('/booking', input),
+    apiPost<{
+      id: number
+      requiresPayment?: boolean
+      checkoutUrl?: string
+      startsAt?: string
+      endsAt?: string
+      type?: string
+      meetUrl?: string | null
+    }>('/booking', input),
 
   // Admin
   settings: () => apiGet<BookingSettings>('/admin/booking/settings'),

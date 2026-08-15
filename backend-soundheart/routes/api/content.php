@@ -21,6 +21,7 @@ Route::get('settings', [SettingController::class, 'show']);
 Route::get('booking/config', [BookingController::class, 'config']);
 Route::get('booking/slots', [BookingController::class, 'slots']);
 Route::post('booking', [BookingController::class, 'store'])->middleware('throttle:12,1');
+Route::post('booking/stripe/webhook', [BookingController::class, 'webhook']);
 
 // Contact form — validates + emails, stores NOTHING. Rate limited.
 Route::post('contact', [ContactController::class, 'store'])->middleware('throttle:contact');

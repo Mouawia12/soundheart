@@ -35,4 +35,22 @@ return [
         ],
     ],
 
+    // Booking payments — active only once the keys are set in .env.
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
+
+    // Google Calendar / Meet — active only once configured in .env.
+    'google_calendar' => [
+        'calendar_id' => env('GOOGLE_CALENDAR_ID'),
+        'service_account_json' => env('GOOGLE_SERVICE_ACCOUNT_JSON'),
+        'service_account_file' => env('GOOGLE_SERVICE_ACCOUNT_FILE'),
+    ],
+
+    'booking' => [
+        'frontend_url' => env('FRONTEND_URL', 'http://localhost:3020'),
+    ],
+
 ];

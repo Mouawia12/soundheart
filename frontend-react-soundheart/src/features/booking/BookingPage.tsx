@@ -31,9 +31,17 @@ export default function BookingPage() {
   const [website, setWebsite] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [returned, setReturned] = useState<'success' | 'cancelled' | null>(null)
 
   useEffect(() => {
     document.title = 'Book a session | SoundHeart Counseling'
+    const status = new URLSearchParams(window.location.search).get('status')
+    if (status === 'success') {
+      setReturned('success')
+      setStep('done')
+    } else if (status === 'cancelled') {
+      setReturned('cancelled')
+    }
   }, [])
 
   useEffect(() => {
@@ -73,7 +81,7 @@ export default function BookingPage() {
     if (!email.trim()) return setError('Please enter your email.')
     setSubmitting(true)
     try {
-      await bookingApi.create({
+      const res = await bookingApi.create({
         name: name.trim(),
         email: email.trim(),
         guests: guests.map((g) => g.trim()).filter(Boolean),
@@ -81,6 +89,10 @@ export default function BookingPage() {
         type,
         website,
       })
+      if (res.checkoutUrl) {
+        window.location.href = res.checkoutUrl // Stripe Checkout
+        return
+      }
       setStep('done')
     } catch (e) {
       setError(apiErrorMessage(e, 'Could not complete the booking. Please try another time.'))
@@ -105,14 +117,19 @@ export default function BookingPage() {
         {step === 'done' ? (
           <div className="mx-auto mt-12 max-w-[640px] rounded-[16px] border border-[#cfe6d4] bg-[#eef7f0] p-10 text-center">
             <p className="m-0 font-serif text-[1.6rem] text-navy">You're booked ✓</p>
-            <p className="mt-2 text-[1.05rem] text-[#4a5550]">{selectedWhen}</p>
+            {slot && <p className="mt-2 text-[1.05rem] text-[#4a5550]">{selectedWhen}</p>}
             <p className="mt-3 text-[0.95rem] text-[#55606b]">
-              A confirmation is on its way to <b className="text-navy">{email}</b>
-              {guests.filter(Boolean).length ? ' and your guests' : ''}.
+              A confirmation is on its way to {email ? <b className="text-navy">{email}</b> : 'your email'}
+              {guests.filter(Boolean).length ? ' and your guests' : ''}. For online sessions it includes your video link.
             </p>
           </div>
         ) : step === 'pick' ? (
           <div className="mt-10">
+            {returned === 'cancelled' && (
+              <p className="mb-5 rounded-[8px] border border-[#e9d3ad] bg-[#fff4e8] px-4 py-3 text-[0.9rem] text-[#6b5636]">
+                Payment was cancelled — your session wasn't booked. Pick a time to try again.
+              </p>
+            )}
             {/* Date strip */}
             <div className="flex gap-2.5 overflow-x-auto pb-2">
               {dates.map((d) => {

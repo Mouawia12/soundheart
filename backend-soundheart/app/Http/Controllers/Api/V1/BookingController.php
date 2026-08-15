@@ -7,6 +7,8 @@ use App\Models\Booking;
 use App\Models\Setting;
 use App\Support\ApiResponse;
 use App\Support\BookingSlots;
+use App\Support\GoogleCalendar;
+use App\Support\StripePayments;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -103,11 +105,62 @@ class BookingController extends Controller
             'payment_status' => 'not_required',
         ]);
 
+        // Auto-create the Google Calendar event + Meet link (no-op without keys).
+        try {
+            $cal = new GoogleCalendar();
+            if ($cal->enabled()) {
+                $ev = $cal->createEvent($booking);
+                if ($ev) {
+                    $booking->update(['meet_url' => $ev['meetUrl'] ?? null, 'calendar_event_id' => $ev['eventId'] ?? null]);
+                }
+            }
+        } catch (\Throwable $e) {
+            report($e);
+        }
+
+        // If payments are on and there's a price, send the client to Stripe Checkout.
+        $stripe = new StripePayments();
+        if ($stripe->enabled() && $booking->amount) {
+            $booking->update(['payment_status' => 'unpaid']);
+            $frontend = rtrim(config('services.booking.frontend_url'), '/');
+            $checkoutUrl = $stripe->createCheckoutSession(
+                $booking,
+                $frontend.'/booking?status=success',
+                $frontend.'/booking?status=cancelled',
+            );
+            if ($checkoutUrl) {
+                return ApiResponse::success([
+                    'id' => $booking->id,
+                    'requiresPayment' => true,
+                    'checkoutUrl' => $checkoutUrl,
+                ], 'Payment required', 201);
+            }
+        }
+
         return ApiResponse::success([
             'id' => $booking->id,
             'startsAt' => $booking->starts_at->toIso8601String(),
             'endsAt' => $booking->ends_at->toIso8601String(),
             'type' => $booking->type,
+            'meetUrl' => $booking->meet_url,
         ], 'Booking confirmed', 201);
+    }
+
+    /** Stripe webhook — marks a booking paid once checkout completes. */
+    public function webhook(Request $request): JsonResponse
+    {
+        $event = (new StripePayments())->verifyWebhook($request->getContent(), $request->header('Stripe-Signature'));
+        if (! $event) {
+            return ApiResponse::error('Invalid signature', 400);
+        }
+
+        if (($event['type'] ?? '') === 'checkout.session.completed') {
+            $bookingId = $event['data']['object']['metadata']['booking_id'] ?? null;
+            if ($bookingId) {
+                Booking::where('id', $bookingId)->update(['payment_status' => 'paid']);
+            }
+        }
+
+        return ApiResponse::success(null, 'ok');
     }
 }
