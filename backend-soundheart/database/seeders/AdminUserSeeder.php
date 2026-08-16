@@ -12,7 +12,7 @@ class AdminUserSeeder extends Seeder
     {
         $user = User::updateOrCreate(
             ['email' => 'admin@soundheart.org'],
-            ['name' => 'SoundHeart Admin', 'password' => Hash::make('soundheart123')],
+            ['name' => 'SoundHeart Admin', 'password' => Hash::make('soundheart123'), 'role' => 'admin'],
         );
 
         $this->command->info("Admin ready: {$user->email} / soundheart123 (change after first login)");

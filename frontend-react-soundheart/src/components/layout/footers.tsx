@@ -18,7 +18,7 @@ export function FooterSite() {
               {t(`footer.${l.key}`)}
             </Link>
           ))}
-          <Link to="/admin" className="font-semibold text-gold-bright no-underline hover:underline">
+          <Link to="/portal" className="font-semibold text-gold-bright no-underline hover:underline">
             {t('footer.clientLogin')}
           </Link>
         </nav>

@@ -53,4 +53,9 @@ return [
         'frontend_url' => env('FRONTEND_URL', 'http://localhost:3020'),
     ],
 
+    // Google Sign-In for the client portal — active once GOOGLE_CLIENT_ID is set.
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+    ],
+
 ];

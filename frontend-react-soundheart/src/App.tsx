@@ -16,6 +16,10 @@ import SettingsPage from '@/features/admin/pages/SettingsPage'
 import BookingsListPage from '@/features/admin/pages/BookingsListPage'
 import BookingSettingsPage from '@/features/admin/pages/BookingSettingsPage'
 import BookingPage from '@/features/booking/BookingPage'
+import ClientLayout from '@/layouts/ClientLayout'
+import ClientProtectedRoute from '@/router/ClientProtectedRoute'
+import PortalAuthPage from '@/features/portal/PortalAuthPage'
+import ClientDashboardPage from '@/features/portal/ClientDashboardPage'
 import AboutPage from '@/features/pages/AboutPage'
 import FaqPage from '@/features/pages/FaqPage'
 import ContactPage from '@/features/pages/ContactPage'
@@ -71,6 +75,20 @@ export default function App() {
 
       {/* Auth */}
       <Route path="/login" element={<LoginPage />} />
+
+      {/* Client portal */}
+      <Route path="/portal/login" element={<PortalAuthPage mode="login" />} />
+      <Route path="/portal/register" element={<PortalAuthPage mode="register" />} />
+      <Route
+        path="/portal"
+        element={
+          <ClientProtectedRoute>
+            <ClientLayout />
+          </ClientProtectedRoute>
+        }
+      >
+        <Route index element={<ClientDashboardPage />} />
+      </Route>
 
       {/* Admin (protected) */}
       <Route

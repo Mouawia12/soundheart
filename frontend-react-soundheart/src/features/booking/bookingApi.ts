@@ -56,6 +56,7 @@ export interface Booking {
   type: 'online' | 'in_person'
   status: string
   payment_status: string
+  meet_url?: string | null
 }
 
 export const bookingApi = {

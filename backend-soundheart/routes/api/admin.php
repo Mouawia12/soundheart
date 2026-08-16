@@ -14,13 +14,16 @@ use Illuminate\Support\Facades\Route;
 | Auth + admin (protected) endpoints. Loaded inside the /api/v1 group.
 */
 Route::post('auth/login', [AuthController::class, 'login'])->middleware('throttle:auth');
+Route::post('auth/register', [AuthController::class, 'register'])->middleware('throttle:auth');
+Route::post('auth/google', [AuthController::class, 'google'])->middleware('throttle:auth');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('auth/me', [AuthController::class, 'me']);
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::put('auth/password', [AuthController::class, 'updatePassword']);
+    Route::get('auth/my-bookings', [AuthController::class, 'myBookings']);
 
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('stats', [AdminDashboardController::class, 'stats']);
         Route::apiResource('articles', AdminArticleController::class)->except(['create', 'edit']);
         Route::apiResource('categories', AdminCategoryController::class)
