@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '@/store/auth'
+import { useClientAuth } from '@/store/clientAuth'
 import { adminApi } from '../api/adminApi'
 import { apiErrorMessage } from '@/lib/api'
 import LangToggle from '@/components/LangToggle'
@@ -14,6 +15,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const setAuth = useAuthStore((s) => s.setAuth)
+  const setClientAuth = useClientAuth((s) => s.setAuth)
   const isAuthed = useAuthStore((s) => Boolean(s.token))
   if (isAuthed) return <Navigate to="/admin" replace />
   const navigate = useNavigate()
@@ -24,8 +26,14 @@ export default function LoginPage() {
     setLoading(true)
     try {
       const { token, user } = await adminApi.login(email, password)
-      setAuth(token, user)
-      navigate('/admin')
+      // A non-admin who lands on the admin form belongs in the client portal.
+      if (user.role && user.role !== 'admin') {
+        setClientAuth(token, { ...user, role: user.role })
+        navigate('/portal')
+      } else {
+        setAuth(token, user)
+        navigate('/admin')
+      }
     } catch (err) {
       setError(apiErrorMessage(err, t('auth.signInFailed')))
     } finally {

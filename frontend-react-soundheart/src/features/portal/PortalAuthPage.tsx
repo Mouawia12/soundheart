@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useClientAuth } from '@/store/clientAuth'
+import { useClientAuth, type ClientUser } from '@/store/clientAuth'
+import { useAuthStore } from '@/store/auth'
 import { apiErrorMessage } from '@/lib/api'
 import { BrandMark } from '@/components/layout/Header'
 import { portalApi } from './portalApi'
@@ -20,6 +21,7 @@ export default function PortalAuthPage({ mode: initial = 'login' }: { mode?: 'lo
   const [loading, setLoading] = useState(false)
 
   const setAuth = useClientAuth((s) => s.setAuth)
+  const setAdminAuth = useAuthStore((s) => s.setAuth)
   const alreadyAuthed = useClientAuth((s) => Boolean(s.token))
   const navigate = useNavigate()
 
@@ -29,13 +31,24 @@ export default function PortalAuthPage({ mode: initial = 'login' }: { mode?: 'lo
 
   if (alreadyAuthed) return <Navigate to="/portal" replace />
 
+  // Route by role: an admin who signs in here belongs on the dashboard,
+  // not the client portal.
+  const land = (token: string, user: ClientUser) => {
+    if (user.role === 'admin') {
+      setAdminAuth(token, user)
+      navigate('/admin')
+    } else {
+      setAuth(token, user)
+      navigate('/portal')
+    }
+  }
+
   const onGoogle = async (credential: string) => {
     setError('')
     setLoading(true)
     try {
       const { token, user } = await portalApi.google(credential)
-      setAuth(token, user)
-      navigate('/portal')
+      land(token, user)
     } catch (e) {
       setError(apiErrorMessage(e, 'Google sign-in failed'))
     } finally {
@@ -53,8 +66,7 @@ export default function PortalAuthPage({ mode: initial = 'login' }: { mode?: 'lo
         mode === 'login'
           ? await portalApi.login(email, password)
           : await portalApi.register(name, email, password, confirm)
-      setAuth(res.token, res.user)
-      navigate('/portal')
+      land(res.token, res.user)
     } catch (err) {
       setError(apiErrorMessage(err, mode === 'login' ? 'Sign in failed' : 'Could not create your account'))
     } finally {
