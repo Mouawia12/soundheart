@@ -109,6 +109,7 @@ const ar = {
   admin: {
     nav: {
       dashboard: 'لوحة التحكم',
+      messages: 'الرسائل',
       articles: 'المقالات',
       categories: 'التصنيفات',
       pages: 'الصفحات',

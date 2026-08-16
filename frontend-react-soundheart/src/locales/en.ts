@@ -111,6 +111,7 @@ const en = {
   admin: {
     nav: {
       dashboard: 'Dashboard',
+      messages: 'Messages',
       articles: 'Articles',
       categories: 'Categories',
       pages: 'Pages',

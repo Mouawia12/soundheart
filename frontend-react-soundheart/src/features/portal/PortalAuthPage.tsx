@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useClientAuth } from '@/store/clientAuth'
 import { apiErrorMessage } from '@/lib/api'
 import { BrandMark } from '@/components/layout/Header'
@@ -20,11 +20,14 @@ export default function PortalAuthPage({ mode: initial = 'login' }: { mode?: 'lo
   const [loading, setLoading] = useState(false)
 
   const setAuth = useClientAuth((s) => s.setAuth)
+  const alreadyAuthed = useClientAuth((s) => Boolean(s.token))
   const navigate = useNavigate()
 
   useEffect(() => {
     document.title = 'Client portal | SoundHeart Counseling'
   }, [])
+
+  if (alreadyAuthed) return <Navigate to="/portal" replace />
 
   const onGoogle = async (credential: string) => {
     setError('')

@@ -1,11 +1,14 @@
+import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '@/store/auth'
 import { adminApi } from '@/features/admin/api/adminApi'
+import { ensureNotifyPermission, useUnread } from '@/features/messaging/useUnread'
 import LangToggle from '@/components/LangToggle'
 
 const nav = [
   { to: '/admin', key: 'dashboard', end: true },
+  { to: '/admin/messages', key: 'messages', end: false },
   { to: '/admin/articles', key: 'articles', end: false },
   { to: '/admin/categories', key: 'categories', end: false },
   { to: '/admin/pages', key: 'pages', end: false },
@@ -19,6 +22,9 @@ export default function AdminLayout() {
   const user = useAuthStore((s) => s.user)
   const logout = useAuthStore((s) => s.logout)
   const navigate = useNavigate()
+  const unread = useUnread('admin-messages-unread', adminApi.messagesUnread, 'New client message')
+
+  useEffect(() => ensureNotifyPermission(), [])
 
   const onLogout = async () => {
     try {
@@ -47,12 +53,15 @@ export default function AdminLayout() {
               to={item.to}
               end={item.end}
               className={({ isActive }) =>
-                `rounded-md px-3 py-2 text-[0.95rem] font-medium no-underline transition-colors ${
+                `flex items-center justify-between rounded-md px-3 py-2 text-[0.95rem] font-medium no-underline transition-colors ${
                   isActive ? 'bg-gold text-navy' : 'text-[#c9d3c8] hover:bg-white/5 hover:text-ivory'
                 }`
               }
             >
-              {t(`admin.nav.${item.key}`)}
+              <span>{t(`admin.nav.${item.key}`)}</span>
+              {item.key === 'messages' && unread > 0 && (
+                <span className="ml-2 rounded-full bg-ivory px-1.5 py-0.5 text-[0.68rem] font-bold text-navy">{unread}</span>
+              )}
             </NavLink>
           ))}
         </nav>

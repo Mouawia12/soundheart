@@ -20,6 +20,8 @@ import ClientLayout from '@/layouts/ClientLayout'
 import ClientProtectedRoute from '@/router/ClientProtectedRoute'
 import PortalAuthPage from '@/features/portal/PortalAuthPage'
 import ClientDashboardPage from '@/features/portal/ClientDashboardPage'
+import ClientMessagesPage from '@/features/portal/ClientMessagesPage'
+import MessagesPage from '@/features/admin/pages/MessagesPage'
 import AboutPage from '@/features/pages/AboutPage'
 import FaqPage from '@/features/pages/FaqPage'
 import ContactPage from '@/features/pages/ContactPage'
@@ -88,6 +90,7 @@ export default function App() {
         }
       >
         <Route index element={<ClientDashboardPage />} />
+        <Route path="messages" element={<ClientMessagesPage />} />
       </Route>
 
       {/* Admin (protected) */}
@@ -106,6 +109,7 @@ export default function App() {
         <Route path="categories" element={<CategoriesPage />} />
         <Route path="pages" element={<PagesListPage />} />
         <Route path="pages/:key" element={<PageEditorPage />} />
+        <Route path="messages" element={<MessagesPage />} />
         <Route path="bookings" element={<BookingsListPage />} />
         <Route path="booking" element={<BookingSettingsPage />} />
         <Route path="settings" element={<SettingsPage />} />

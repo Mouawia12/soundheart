@@ -25,6 +25,13 @@ export interface AuthResult {
   user: ClientUser
 }
 
+export interface Message {
+  id: number
+  from_admin: boolean
+  body: string
+  created_at: string
+}
+
 export const portalApi = {
   register: (name: string, email: string, password: string, password_confirmation: string) =>
     unwrap<AuthResult>(clientApi.post('/auth/register', { name, email, password, password_confirmation })),
@@ -34,6 +41,10 @@ export const portalApi = {
   me: () => unwrap<ClientUser>(clientApi.get('/auth/me')),
   myBookings: () => unwrap<Booking[]>(clientApi.get('/auth/my-bookings')),
   logout: () => clientApi.post('/auth/logout').catch(() => {}),
+
+  messages: () => unwrap<Message[]>(clientApi.get('/portal/messages')),
+  sendMessage: (body: string) => unwrap<Message>(clientApi.post('/portal/messages', { body })),
+  unread: () => unwrap<{ unread: number }>(clientApi.get('/portal/unread')),
 }
 
 export const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined

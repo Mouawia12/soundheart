@@ -12,6 +12,22 @@ export interface DashboardStats {
   recent: ArticleCard[]
 }
 
+export interface ChatMessage {
+  id: number
+  from_admin: boolean
+  body: string
+  created_at: string
+}
+
+export interface AdminConversation {
+  id: number
+  name: string
+  email: string
+  last_message_at: string | null
+  unread: number
+  last: string | null
+}
+
 export interface ArticleInput {
   title: string
   slug?: string
@@ -55,6 +71,13 @@ export const adminApi = {
 
   settings: () => apiGet<SiteSettings>('/admin/settings'),
   updateSettings: (data: SiteSettings) => apiPut<SiteSettings>('/admin/settings', { data }),
+
+  conversations: () => apiGet<AdminConversation[]>('/admin/conversations'),
+  conversationMessages: (id: number) =>
+    apiGet<{ name: string; email: string; messages: ChatMessage[] }>(`/admin/conversations/${id}/messages`),
+  sendConversationMessage: (id: number, body: string) =>
+    apiPost<ChatMessage>(`/admin/conversations/${id}/messages`, { body }),
+  messagesUnread: () => apiGet<{ unread: number }>('/admin/messages/unread'),
 
   uploadMedia: async (file: File): Promise<{ url: string; path: string }> => {
     const form = new FormData()

@@ -1,12 +1,17 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useClientAuth } from '@/store/clientAuth'
 import { portalApi } from '@/features/portal/portalApi'
+import { ensureNotifyPermission, useUnread } from '@/features/messaging/useUnread'
 import { BrandMark } from '@/components/layout/Header'
 
 export default function ClientLayout() {
   const user = useClientAuth((s) => s.user)
   const logout = useClientAuth((s) => s.logout)
   const navigate = useNavigate()
+  const unread = useUnread('portal-unread', portalApi.unread, 'New message from SoundHeart')
+
+  useEffect(() => ensureNotifyPermission(), [])
 
   const onLogout = async () => {
     await portalApi.logout()
@@ -23,7 +28,16 @@ export default function ClientLayout() {
             <b className="font-serif text-[1.25rem] font-semibold text-navy">SoundHeart</b>
           </Link>
           <div className="flex items-center gap-4 text-[0.9rem]">
-            <span className="text-[#59636f] max-[560px]:hidden">{user?.name}</span>
+            <NavLink to="/portal" end className={({ isActive }) => `font-semibold no-underline ${isActive ? 'text-gold' : 'text-navy hover:text-gold'}`}>
+              Home
+            </NavLink>
+            <NavLink to="/portal/messages" className={({ isActive }) => `relative font-semibold no-underline ${isActive ? 'text-gold' : 'text-navy hover:text-gold'}`}>
+              Messages
+              {unread > 0 && (
+                <span className="absolute -right-3 -top-2 rounded-full bg-gold px-1.5 py-0.5 text-[0.62rem] font-bold text-navy">{unread}</span>
+              )}
+            </NavLink>
+            <span className="text-[#59636f] max-[620px]:hidden">{user?.name}</span>
             <button
               type="button"
               onClick={onLogout}

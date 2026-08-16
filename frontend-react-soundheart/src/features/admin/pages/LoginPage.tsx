@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '@/store/auth'
 import { adminApi } from '../api/adminApi'
@@ -14,6 +14,8 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const setAuth = useAuthStore((s) => s.setAuth)
+  const isAuthed = useAuthStore((s) => Boolean(s.token))
+  if (isAuthed) return <Navigate to="/admin" replace />
   const navigate = useNavigate()
 
   const onSubmit = async (e: FormEvent) => {

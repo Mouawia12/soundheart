@@ -4,10 +4,12 @@ use App\Http\Controllers\Api\V1\Admin\AdminArticleController;
 use App\Http\Controllers\Api\V1\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\V1\Admin\AdminDashboardController;
 use App\Http\Controllers\Api\V1\Admin\AdminBookingController;
+use App\Http\Controllers\Api\V1\Admin\AdminMessageController;
 use App\Http\Controllers\Api\V1\Admin\AdminPageController;
 use App\Http\Controllers\Api\V1\Admin\AdminSettingController;
 use App\Http\Controllers\Api\V1\Admin\MediaController;
 use App\Http\Controllers\Api\V1\Auth\AuthController;
+use App\Http\Controllers\Api\V1\PortalMessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +25,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('auth/password', [AuthController::class, 'updatePassword']);
     Route::get('auth/my-bookings', [AuthController::class, 'myBookings']);
 
+    // Client portal messaging (any authed user; clients use it).
+    Route::get('portal/messages', [PortalMessageController::class, 'index']);
+    Route::post('portal/messages', [PortalMessageController::class, 'store']);
+    Route::get('portal/unread', [PortalMessageController::class, 'unread']);
+
     Route::prefix('admin')->middleware('admin')->group(function () {
+        Route::get('conversations', [AdminMessageController::class, 'conversations']);
+        Route::get('conversations/{conversation}/messages', [AdminMessageController::class, 'messages']);
+        Route::post('conversations/{conversation}/messages', [AdminMessageController::class, 'store']);
+        Route::get('messages/unread', [AdminMessageController::class, 'unread']);
+
         Route::get('stats', [AdminDashboardController::class, 'stats']);
         Route::apiResource('articles', AdminArticleController::class)->except(['create', 'edit']);
         Route::apiResource('categories', AdminCategoryController::class)
