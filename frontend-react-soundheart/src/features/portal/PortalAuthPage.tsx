@@ -22,14 +22,17 @@ export default function PortalAuthPage({ mode: initial = 'login' }: { mode?: 'lo
 
   const setAuth = useClientAuth((s) => s.setAuth)
   const setAdminAuth = useAuthStore((s) => s.setAuth)
-  const alreadyAuthed = useClientAuth((s) => Boolean(s.token))
+  const clientAuthed = useClientAuth((s) => Boolean(s.token))
+  const adminAuthed = useAuthStore((s) => Boolean(s.token))
   const navigate = useNavigate()
 
   useEffect(() => {
-    document.title = 'Client portal | SoundHeart Counseling'
+    document.title = 'Sign in | SoundHeart Counseling'
   }, [])
 
-  if (alreadyAuthed) return <Navigate to="/portal" replace />
+  // Already signed in? Send them to the right home by role.
+  if (adminAuthed) return <Navigate to="/admin" replace />
+  if (clientAuthed) return <Navigate to="/portal" replace />
 
   // Route by role: an admin who signs in here belongs on the dashboard,
   // not the client portal.
@@ -85,7 +88,7 @@ export default function PortalAuthPage({ mode: initial = 'login' }: { mode?: 'lo
           {mode === 'login' ? 'Welcome back' : 'Create your account'}
         </h1>
         <p className="mb-6 text-[0.9rem] text-[#59636f]">
-          {mode === 'login' ? 'Sign in to your SoundHeart client portal.' : 'Set up your client portal to manage sessions and intake forms.'}
+          {mode === 'login' ? 'Sign in to your SoundHeart account.' : 'Set up your client portal to manage sessions and intake forms.'}
         </p>
 
         <GoogleSignInButton onCredential={onGoogle} />

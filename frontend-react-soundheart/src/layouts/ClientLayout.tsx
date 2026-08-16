@@ -16,7 +16,7 @@ export default function ClientLayout() {
   const onLogout = async () => {
     await portalApi.logout()
     logout()
-    navigate('/portal/login')
+    navigate('/login')
   }
 
   return (

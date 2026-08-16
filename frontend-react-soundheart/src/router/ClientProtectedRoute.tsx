@@ -6,7 +6,7 @@ import { useClientAuth } from '@/store/clientAuth'
 export default function ClientProtectedRoute({ children }: { children: ReactNode }) {
   const token = useClientAuth((s) => s.token)
   const role = useClientAuth((s) => s.user?.role)
-  if (!token) return <Navigate to="/portal/login" replace />
+  if (!token) return <Navigate to="/login" replace />
   if (role === 'admin') return <Navigate to="/admin" replace />
   return <>{children}</>
 }

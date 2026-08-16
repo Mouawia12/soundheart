@@ -1,11 +1,10 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import PublicLayout from '@/layouts/PublicLayout'
 import BlogLayout from '@/layouts/BlogLayout'
 import AdminLayout from '@/layouts/AdminLayout'
 import HomePage from '@/features/home/HomePage'
 import BlogIndexPage from '@/features/blog/pages/BlogIndexPage'
 import ArticlePage from '@/features/blog/pages/ArticlePage'
-import LoginPage from '@/features/admin/pages/LoginPage'
 import DashboardPage from '@/features/admin/pages/DashboardPage'
 import ArticlesListPage from '@/features/admin/pages/ArticlesListPage'
 import ArticleEditPage from '@/features/admin/pages/ArticleEditPage'
@@ -75,12 +74,14 @@ export default function App() {
         <Route path="services/:slug" element={<ServicePage />} />
       </Route>
 
-      {/* Auth */}
-      <Route path="/login" element={<LoginPage />} />
+      {/* Single sign-in for everyone — routes to /admin or /portal by role. */}
+      <Route path="/login" element={<PortalAuthPage mode="login" />} />
+      <Route path="/register" element={<PortalAuthPage mode="register" />} />
+      {/* Old portal auth URLs now fold into the unified page. */}
+      <Route path="/portal/login" element={<Navigate to="/login" replace />} />
+      <Route path="/portal/register" element={<Navigate to="/register" replace />} />
 
       {/* Client portal */}
-      <Route path="/portal/login" element={<PortalAuthPage mode="login" />} />
-      <Route path="/portal/register" element={<PortalAuthPage mode="register" />} />
       <Route
         path="/portal"
         element={

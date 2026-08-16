@@ -55,7 +55,7 @@ export default function Header() {
               {t(`nav.${item.key}`)}
             </NavLink>
           ))}
-          <Link to="/portal" className={`${portalPill} whitespace-nowrap`}>
+          <Link to="/login" className={`${portalPill} whitespace-nowrap`}>
             {t('nav.clientLogin')}
           </Link>
           <Link to="/contact" className={bookOutline}>
@@ -100,7 +100,7 @@ export default function Header() {
           </NavLink>
         ))}
         <Link
-          to="/portal"
+          to="/login"
           onClick={() => setOpen(false)}
           className="w-full border-b border-stone px-[26px] py-[14px] text-[0.94rem] font-semibold text-navy no-underline hover:text-gold"
         >
